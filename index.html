@@ -519,16 +519,37 @@ body::after{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:clamp(24px,4vw,48px);justify-items:center;
 }
-.cliente-card{width:100%;max-width:340px;text-align:center}
+.cliente-card{
+  width:100%;max-width:360px;text-align:center;
+  position:relative;border-radius:24px;overflow:hidden;
+  padding:22px 20px 24px;
+  background-size:cover;background-position:center top;
+  border:2px solid var(--ink-3);
+  box-shadow:0 30px 60px -22px rgba(10,10,11,.5);
+}
+.cliente-card::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background:linear-gradient(180deg,rgba(10,10,11,.55) 0%,rgba(10,10,11,.82) 55%,rgba(10,10,11,.96) 100%);
+  backdrop-filter:blur(1px);
+}
+.cliente-card > *{position:relative;z-index:1}
+.cliente-selo{
+  display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;
+  color:var(--studio);background:rgba(0,0,0,.55);
+  border:1px solid var(--rec);border-radius:999px;
+  padding:7px 12px;margin-bottom:16px;
+}
+.cliente-selo b{color:var(--rec-2);font-size:12.5px}
 .cliente-player{
-  aspect-ratio:9/16;border-radius:18px;overflow:hidden;
-  background:#000;border:2px solid var(--ink);
-  box-shadow:0 30px 60px -22px rgba(10,10,11,.4);
+  aspect-ratio:9/16;border-radius:16px;overflow:hidden;
+  background:#000;border:2px solid rgba(247,247,245,.18);
+  box-shadow:0 20px 44px rgba(0,0,0,.5);
 }
 .cliente-player video{width:100%;height:100%;object-fit:cover;display:block}
 .cliente-nome{
   font-family:var(--titulo);font-weight:700;font-size:18px;letter-spacing:-.01em;
-  margin-top:16px;
+  margin-top:16px;color:var(--studio);
 }
 .cliente-nome::before{content:"● ";color:var(--rec)}
 .grade{
@@ -1165,7 +1186,8 @@ body::after{
 
   <!-- ✏️ EDITE AQUI: troque o src de cada <video> pelo arquivo final do cliente. -->
   <div class="clientes-grade">
-    <div class="cliente-card rev">
+    <div class="cliente-card rev" style="background-image:url('images/ig-hanah-franklin.jpg')">
+      <p class="cliente-selo">@hanahfranklin <b>· 1 MI SEGUIDORES</b></p>
       <div class="cliente-player">
         <video controls playsinline preload="metadata">
           <source src="videos/demo1.mp4" type="video/mp4">
@@ -1173,7 +1195,8 @@ body::after{
       </div>
       <h3 class="cliente-nome">Hanah Franklin</h3>
     </div>
-    <div class="cliente-card rev d1">
+    <div class="cliente-card rev d1" style="background-image:url('images/ig-cynthia-senek.jpg')">
+      <p class="cliente-selo">@cynthiasenek <b>· 713 MIL SEGUIDORES</b></p>
       <div class="cliente-player">
         <video controls playsinline preload="metadata">
           <source src="videos/demo2.mp4" type="video/mp4">
