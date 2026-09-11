@@ -511,72 +511,39 @@ body::after{
 #qualidade .pf{top:4%;left:-3vw}
 
 /* ============================================================
-   CLIENTES — players grandes
+   CLIENTES — players grandes com prova real (print do Instagram)
    ============================================================ */
-#clientes{position:relative}
-/* fundo imersivo: print do Instagram em tela cheia, trocando por cliente ativo */
-#clientes .clientes-fundo{
-  position:absolute;inset:0;z-index:0;overflow:hidden;
-}
-.clientes-fundo .cf-img{
-  position:absolute;inset:0;
-  background-size:cover;background-position:center 15%;
-  opacity:0;transition:opacity 1.1s ease;
-  filter:saturate(.85);
-}
-.clientes-fundo .cf-img.ativo{opacity:.5}
-/* desktop: os dois cards aparecem lado a lado ao mesmo tempo, então cada print
-   fica fixo na sua metade (sem troca) — a troca por scroll só faz sentido
-   quando os cards empilham (mobile), aí sim um substitui o outro. */
-@media (min-width:701px){
-  .clientes-fundo .cf-img{
-    width:50%;left:0;right:auto;opacity:.32!important;transition:none;
-  }
-  .clientes-fundo .cf-img[data-cf="cynthia"]{left:50%}
-}
-.clientes-fundo .cf-num{
-  position:absolute;top:6%;right:3%;
-  font-family:var(--display);font-weight:400;
-  font-size:clamp(70px,13vw,190px);line-height:.82;
-  color:rgba(214,0,0,.24);letter-spacing:-.01em;
-  pointer-events:none;user-select:none;text-align:right;
-}
-.clientes-fundo::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(10,10,11,.7) 0%,rgba(10,10,11,.88) 45%,var(--ink) 92%);
-}
+#clientes .pf{top:6%;left:-3vw}
 .clientes-grade{
   max-width:900px;margin:0 auto;
   display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
   gap:clamp(24px,4vw,48px);justify-items:center;
 }
 .cliente-card{
-  width:100%;max-width:360px;text-align:center;
-  position:relative;border-radius:24px;overflow:hidden;
-  padding:22px 20px 24px;
-  background:rgba(16,16,18,.62);backdrop-filter:blur(8px);
-  border:2px solid rgba(247,247,245,.14);
-  box-shadow:0 30px 60px -22px rgba(10,10,11,.6);
-  transition:border-color .4s ease,box-shadow .4s ease;
+  width:100%;max-width:340px;text-align:center;
+  border-radius:20px;overflow:hidden;
+  background:var(--ink-2);border:2px solid var(--ink-3);
+  box-shadow:0 30px 60px -22px rgba(10,10,11,.5);
+  transition:border-color .25s ease,box-shadow .25s ease,transform .25s ease;
 }
-.cliente-card.ativo{border-color:var(--rec);box-shadow:0 30px 60px -22px rgba(10,10,11,.6),0 0 40px rgba(214,0,0,.2)}
-.cliente-selo{
-  display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
-  font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;
-  color:var(--studio);background:rgba(0,0,0,.55);
-  border:1px solid var(--rec);border-radius:999px;
-  padding:7px 12px;margin-bottom:16px;
+.cliente-card:hover{
+  border-color:var(--rec);transform:translateY(-4px);
+  box-shadow:0 30px 60px -22px rgba(10,10,11,.5),0 0 30px rgba(214,0,0,.22);
 }
-.cliente-selo b{color:var(--rec-2);font-size:12.5px}
+.cliente-ig{
+  width:100%;display:block;
+  border-bottom:2px solid var(--ink-3);
+}
 .cliente-player{
-  aspect-ratio:9/16;border-radius:16px;overflow:hidden;
-  background:#000;border:2px solid rgba(247,247,245,.18);
-  box-shadow:0 20px 44px rgba(0,0,0,.5);
+  aspect-ratio:9/16;overflow:hidden;background:#000;
+  margin:18px 18px 0;border-radius:14px;
+  border:2px solid rgba(247,247,245,.14);
+  box-shadow:0 16px 34px rgba(0,0,0,.5);
 }
 .cliente-player video{width:100%;height:100%;object-fit:cover;display:block}
 .cliente-nome{
   font-family:var(--titulo);font-weight:700;font-size:18px;letter-spacing:-.01em;
-  margin-top:16px;color:var(--studio);
+  padding:16px 16px 22px;color:var(--studio);
 }
 .cliente-nome::before{content:"● ";color:var(--rec)}
 .grade{
@@ -1083,8 +1050,8 @@ body::after{
 <!-- ============ TRILHO HUD ============ -->
 <nav class="trilho" id="trilho" aria-label="Progresso da página">
   <a href="#topo" data-sec="topo"><i></i><span>00 · INÍCIO</span></a>
-  <a href="#qualidade" data-sec="qualidade"><i></i><span>01 · PORTFÓLIO</span></a>
-  <a href="#clientes" data-sec="clientes"><i></i><span>02 · CLIENTES</span></a>
+  <a href="#clientes" data-sec="clientes"><i></i><span>01 · CLIENTES</span></a>
+  <a href="#qualidade" data-sec="qualidade"><i></i><span>02 · PORTFÓLIO</span></a>
   <a href="#contato" data-sec="contato"><i></i><span>03 · CONTATO</span></a>
 </nav>
 
@@ -1092,8 +1059,8 @@ body::after{
 <header class="nav" id="nav">
   <a class="logo marca" href="#topo" aria-label="New Victor — início"><svg viewBox="0 0 100 96" aria-hidden="true"><polygon class="tri fundo" points="100,6.8 100,89.2 39.7,48"/><polygon class="tri frente" points="70.3,0 70.3,96 0,48"/></svg><span>NEW<span class="rec">VICTOR</span></span><sup>.EDIT</sup></a>
   <ul class="nav-links">
-    <li><a href="#qualidade">Portfólio</a></li>
     <li><a href="#clientes">Clientes</a></li>
+    <li><a href="#qualidade">Portfólio</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
   <a class="nav-cta" href="#contato" data-cursor="IR">Falar comigo</a>
@@ -1164,6 +1131,39 @@ body::after{
   </div>
 </div>
 
+<!-- ============ CLIENTES — perfis grandes, prova real ============ -->
+<section class="secao" id="clientes">
+  <span class="varredura" aria-hidden="true"></span>
+  <span class="pf pf-clara" data-par="0.08" aria-hidden="true">CLIENTES</span>
+  <div class="cabecalho">
+    <p class="kicker rev" data-decrypt="PORTFÓLIO // CLIENTES">PORTFÓLIO // CLIENTES</p>
+    <h2 class="rev d1">Edição pra quem <em>já confiou.</em></h2>
+    <p class="rev d2">Perfis verificados, reais, que já passaram pela minha edição.</p>
+  </div>
+
+  <!-- ✏️ EDITE AQUI: cliente-ig é um print real do Instagram (recorte de cabeçalho + seguidores) -->
+  <div class="clientes-grade">
+    <div class="cliente-card rev">
+      <img class="cliente-ig" src="images/ig-hanah-header.jpg" alt="Perfil verificado @hanahfranklin no Instagram — 1 mi seguidores" loading="lazy">
+      <div class="cliente-player">
+        <video controls playsinline preload="metadata">
+          <source src="videos/hanah-franklin.mp4" type="video/mp4">
+        </video>
+      </div>
+      <h3 class="cliente-nome">Hanah Franklin</h3>
+    </div>
+    <div class="cliente-card rev d1">
+      <img class="cliente-ig" src="images/ig-cynthia-header.jpg" alt="Perfil verificado @cynthiasenek no Instagram — 713 mil seguidores" loading="lazy">
+      <div class="cliente-player">
+        <video controls playsinline preload="metadata">
+          <source src="videos/cynthia-senek.mp4" type="video/mp4">
+        </video>
+      </div>
+      <h3 class="cliente-nome">Cynthia Senek</h3>
+    </div>
+  </div>
+</section>
+
 <!-- ============ PORTFÓLIO ============ -->
 <section class="secao secao-escura" id="qualidade">
   <span class="varredura" aria-hidden="true"></span>
@@ -1201,42 +1201,6 @@ body::after{
   <p class="carrossel-dica">USE AS SETAS PARA GIRAR <b>·</b> CLIQUE NO VÍDEO DA FRENTE PARA OUVIR</p>
 </section>
 
-<!-- ============ CLIENTES — players grandes ============ -->
-<section class="secao" id="clientes">
-  <span class="varredura" aria-hidden="true"></span>
-  <!-- ✏️ fundo imersivo: troca entre os prints conforme o card visível no scroll -->
-  <div class="clientes-fundo" aria-hidden="true">
-    <div class="cf-img" data-cf="hanah" style="background-image:url('images/ig-hanah-franklin.jpg')"><span class="cf-num">1 MI</span></div>
-    <div class="cf-img" data-cf="cynthia" style="background-image:url('images/ig-cynthia-senek.jpg')"><span class="cf-num">713 MIL</span></div>
-  </div>
-  <div class="cabecalho">
-    <p class="kicker rev" data-decrypt="PORTFÓLIO // CLIENTES">PORTFÓLIO // CLIENTES</p>
-    <h2 class="rev d1">Edição pra quem <em>já confiou.</em></h2>
-    <p class="rev d2">Perfis reais que já passaram pela minha edição — assiste completo, do jeito que foi ao ar.</p>
-  </div>
-
-  <div class="clientes-grade">
-    <div class="cliente-card rev" data-cliente="hanah">
-      <p class="cliente-selo">@hanahfranklin <b>· 1 MI SEGUIDORES</b></p>
-      <div class="cliente-player">
-        <video controls playsinline preload="metadata">
-          <source src="videos/hanah-franklin.mp4" type="video/mp4">
-        </video>
-      </div>
-      <h3 class="cliente-nome">Hanah Franklin</h3>
-    </div>
-    <div class="cliente-card rev d1" data-cliente="cynthia">
-      <p class="cliente-selo">@cynthiasenek <b>· 713 MIL SEGUIDORES</b></p>
-      <div class="cliente-player">
-        <video controls playsinline preload="metadata">
-          <source src="videos/cynthia-senek.mp4" type="video/mp4">
-        </video>
-      </div>
-      <h3 class="cliente-nome">Cynthia Senek</h3>
-    </div>
-  </div>
-</section>
-
 <div class="estudio">
 <!-- ============ CONTATO ============ -->
 <section class="secao" id="porque">
@@ -1261,8 +1225,8 @@ body::after{
   <div class="footer-grid">
     <span class="logo marca"><svg viewBox="0 0 100 96" aria-hidden="true"><polygon class="tri fundo" points="100,6.8 100,89.2 39.7,48"/><polygon class="tri frente" points="70.3,0 70.3,96 0,48"/></svg><span>NEW<span class="rec">VICTOR</span></span></span>
     <nav aria-label="Links do rodapé">
-      <a href="#qualidade">PORTFÓLIO</a>
       <a href="#clientes">CLIENTES</a>
+      <a href="#qualidade">PORTFÓLIO</a>
       <a href="#contato">CONTATO</a>
     </nav>
     <span>© 2026 NEW VICTOR · NEWVICTOR.EDIT BUILD 2030.REC</span>
@@ -1442,38 +1406,18 @@ window.DEMOS_NEWVICTOR = {
         }
       });
     }, {rootMargin:'-40% 0px -50% 0px'});
-    ['#hero','#qualidade','#clientes','#contato'].forEach(sel=>{
+    ['#hero','#clientes','#qualidade','#contato'].forEach(sel=>{
       const el = document.querySelector(sel);
       if(el) ioSec.observe(el);
     });
   }
 
-  /* ---------- Fundo imersivo da seção Clientes (print troca por card ativo) ---------- */
-  (function(){
-    const secaoClientes = $('#clientes');
-    if(!secaoClientes) return;
-    const fundos = $$('#clientes .cf-img');
-    const cardsCliente = $$('#clientes .cliente-card');
-    if(!fundos.length || !cardsCliente.length) return;
-    function ativarCliente(nome){
-      fundos.forEach(f => f.classList.toggle('ativo', f.dataset.cf === nome));
-      cardsCliente.forEach(c => c.classList.toggle('ativo', c.dataset.cliente === nome));
-    }
-    ativarCliente(cardsCliente[0].dataset.cliente);
-    if('IntersectionObserver' in window){
-      const ioClientes = new IntersectionObserver(entradas=>{
-        entradas.forEach(e=>{ if(e.isIntersecting) ativarCliente(e.target.dataset.cliente); });
-      }, {rootMargin:'-35% 0px -35% 0px', threshold:0});
-      cardsCliente.forEach(c => ioClientes.observe(c));
-    }
-  })();
-
   /* ---------- Jornada global (navegação do site) ---------- */
   const jornada = $('#jornada');
   const jSecoes = [
     {id:'topo', nome:'INÍCIO'},
-    {id:'qualidade', nome:'PORTFÓLIO'},
     {id:'clientes', nome:'CLIENTES'},
+    {id:'qualidade', nome:'PORTFÓLIO'},
     {id:'contato', nome:'CONTATO'}
   ];
   const jRotulo = $('#j-rotulo');
