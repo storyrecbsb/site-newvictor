@@ -513,7 +513,38 @@ body::after{
 /* ============================================================
    CLIENTES — players grandes
    ============================================================ */
-#clientes .pf{top:0;right:-4vw;left:auto}
+#clientes{position:relative}
+/* fundo imersivo: print do Instagram em tela cheia, trocando por cliente ativo */
+#clientes .clientes-fundo{
+  position:absolute;inset:0;z-index:0;overflow:hidden;
+}
+.clientes-fundo .cf-img{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center 15%;
+  opacity:0;transition:opacity 1.1s ease;
+  filter:saturate(.85);
+}
+.clientes-fundo .cf-img.ativo{opacity:.5}
+/* desktop: os dois cards aparecem lado a lado ao mesmo tempo, então cada print
+   fica fixo na sua metade (sem troca) — a troca por scroll só faz sentido
+   quando os cards empilham (mobile), aí sim um substitui o outro. */
+@media (min-width:701px){
+  .clientes-fundo .cf-img{
+    width:50%;left:0;right:auto;opacity:.32!important;transition:none;
+  }
+  .clientes-fundo .cf-img[data-cf="cynthia"]{left:50%}
+}
+.clientes-fundo .cf-num{
+  position:absolute;top:6%;right:3%;
+  font-family:var(--display);font-weight:400;
+  font-size:clamp(70px,13vw,190px);line-height:.82;
+  color:rgba(214,0,0,.24);letter-spacing:-.01em;
+  pointer-events:none;user-select:none;text-align:right;
+}
+.clientes-fundo::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(10,10,11,.7) 0%,rgba(10,10,11,.88) 45%,var(--ink) 92%);
+}
 .clientes-grade{
   max-width:900px;margin:0 auto;
   display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -523,16 +554,12 @@ body::after{
   width:100%;max-width:360px;text-align:center;
   position:relative;border-radius:24px;overflow:hidden;
   padding:22px 20px 24px;
-  background-size:cover;background-position:center top;
-  border:2px solid var(--ink-3);
-  box-shadow:0 30px 60px -22px rgba(10,10,11,.5);
+  background:rgba(16,16,18,.62);backdrop-filter:blur(8px);
+  border:2px solid rgba(247,247,245,.14);
+  box-shadow:0 30px 60px -22px rgba(10,10,11,.6);
+  transition:border-color .4s ease,box-shadow .4s ease;
 }
-.cliente-card::before{
-  content:"";position:absolute;inset:0;z-index:0;
-  background:linear-gradient(180deg,rgba(10,10,11,.55) 0%,rgba(10,10,11,.82) 55%,rgba(10,10,11,.96) 100%);
-  backdrop-filter:blur(1px);
-}
-.cliente-card > *{position:relative;z-index:1}
+.cliente-card.ativo{border-color:var(--rec);box-shadow:0 30px 60px -22px rgba(10,10,11,.6),0 0 40px rgba(214,0,0,.2)}
 .cliente-selo{
   display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
   font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;
@@ -1177,7 +1204,11 @@ body::after{
 <!-- ============ CLIENTES — players grandes ============ -->
 <section class="secao" id="clientes">
   <span class="varredura" aria-hidden="true"></span>
-  <span class="pf pf-clara" data-par="0.08" aria-hidden="true">CLIENTES</span>
+  <!-- ✏️ fundo imersivo: troca entre os prints conforme o card visível no scroll -->
+  <div class="clientes-fundo" aria-hidden="true">
+    <div class="cf-img" data-cf="hanah" style="background-image:url('images/ig-hanah-franklin.jpg')"><span class="cf-num">1 MI</span></div>
+    <div class="cf-img" data-cf="cynthia" style="background-image:url('images/ig-cynthia-senek.jpg')"><span class="cf-num">713 MIL</span></div>
+  </div>
   <div class="cabecalho">
     <p class="kicker rev" data-decrypt="PORTFÓLIO // CLIENTES">PORTFÓLIO // CLIENTES</p>
     <h2 class="rev d1">Edição pra quem <em>já confiou.</em></h2>
@@ -1185,7 +1216,7 @@ body::after{
   </div>
 
   <div class="clientes-grade">
-    <div class="cliente-card rev" style="background-image:url('images/ig-hanah-franklin.jpg')">
+    <div class="cliente-card rev" data-cliente="hanah">
       <p class="cliente-selo">@hanahfranklin <b>· 1 MI SEGUIDORES</b></p>
       <div class="cliente-player">
         <video controls playsinline preload="metadata">
@@ -1194,7 +1225,7 @@ body::after{
       </div>
       <h3 class="cliente-nome">Hanah Franklin</h3>
     </div>
-    <div class="cliente-card rev d1" style="background-image:url('images/ig-cynthia-senek.jpg')">
+    <div class="cliente-card rev d1" data-cliente="cynthia">
       <p class="cliente-selo">@cynthiasenek <b>· 713 MIL SEGUIDORES</b></p>
       <div class="cliente-player">
         <video controls playsinline preload="metadata">
@@ -1416,6 +1447,26 @@ window.DEMOS_NEWVICTOR = {
       if(el) ioSec.observe(el);
     });
   }
+
+  /* ---------- Fundo imersivo da seção Clientes (print troca por card ativo) ---------- */
+  (function(){
+    const secaoClientes = $('#clientes');
+    if(!secaoClientes) return;
+    const fundos = $$('#clientes .cf-img');
+    const cardsCliente = $$('#clientes .cliente-card');
+    if(!fundos.length || !cardsCliente.length) return;
+    function ativarCliente(nome){
+      fundos.forEach(f => f.classList.toggle('ativo', f.dataset.cf === nome));
+      cardsCliente.forEach(c => c.classList.toggle('ativo', c.dataset.cliente === nome));
+    }
+    ativarCliente(cardsCliente[0].dataset.cliente);
+    if('IntersectionObserver' in window){
+      const ioClientes = new IntersectionObserver(entradas=>{
+        entradas.forEach(e=>{ if(e.isIntersecting) ativarCliente(e.target.dataset.cliente); });
+      }, {rootMargin:'-35% 0px -35% 0px', threshold:0});
+      cardsCliente.forEach(c => ioClientes.observe(c));
+    }
+  })();
 
   /* ---------- Jornada global (navegação do site) ---------- */
   const jornada = $('#jornada');
