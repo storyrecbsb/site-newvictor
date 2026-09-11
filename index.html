@@ -287,12 +287,11 @@ body::after{
 .hero .bokeh.b1{width:38vw;min-width:300px;top:-10%;right:-8%}
 .hero .bokeh.b2{width:26vw;min-width:220px;bottom:-14%;left:-6%;animation-delay:-7s}
 .hero-grid{
-  position:relative;z-index:6;width:100%;max-width:1220px;
-  display:grid;grid-template-columns:1.02fr .98fr;
-  gap:clamp(24px,4vw,56px);align-items:center;
+  position:relative;z-index:6;width:100%;max-width:780px;
   padding:104px clamp(20px,4vw,48px) 92px;
 }
-.hero-texto{text-align:left}
+.hero-texto{text-align:center}
+.hero-texto .hero-botoes{justify-content:center}
 .hero-texto > *{animation:foco .95s cubic-bezier(.22,1,.36,1) both}
 .hero-texto > *:nth-child(1){animation-delay:2.9s}
 .hero-texto > *:nth-child(2){animation-delay:3.05s}
@@ -331,7 +330,7 @@ body::after{
   text-shadow:0 0 34px rgba(242,20,20,.55), 0 0 8px rgba(242,20,20,.4);
 }
 .hero-sub{
-  margin:24px 0 34px;max-width:48ch;
+  margin:24px auto 34px;max-width:48ch;
   color:var(--nevoa);font-size:clamp(15px,1.6vw,18.5px);
 }
 .hero-sub strong{color:var(--studio)}
@@ -992,12 +991,7 @@ body::after{
   .trilho{display:none}
 }
 @media (max-width:900px){
-  .hero-grid{grid-template-columns:1fr;padding-top:112px;gap:30px}
-  .hero-texto{text-align:center}
-  .hero-texto .hero-botoes{justify-content:center}
-  .hero-sub{margin-left:auto;margin-right:auto}
-  .fone{width:clamp(92px,25vw,128px)}
-  .fone.f2{width:clamp(108px,29vw,150px)}
+  .hero-grid{padding-top:112px}
 }
 @media (max-width:760px){
   .nav-links{display:none}
@@ -1088,36 +1082,6 @@ body::after{
         <!-- ✏️ EDITE AQUI: WhatsApp real -->
         <a class="btn btn-borda magnetico" href="https://wa.me/5561983032555" target="_blank" rel="noopener" data-cursor="ZAP">Falar no WhatsApp</a>
       </div>
-    </div>
-
-    <!-- ✏️ EDITE AQUI: SEUS 3 MELHORES VÍDEOS rodando no hero.
-         Troque data-video="demo:demoN" pela URL direta do .mp4 de cada um.
-         O do meio (f2) é o destaque — coloque seu TOP 1 nele. -->
-    <div class="hero-videos" aria-label="Melhores vídeos editados por New Victor">
-      <button class="fone f1" type="button" data-cursor="SOM" data-video="demo:demo3" data-arte="TOP 2" data-titulo="Vídeo de produto" data-formato="Reel · 9:16" data-dur="0:10" data-ano="2026" data-desc="Edição de produto que dá água na boca: corte no tempo certo, ritmo e trilha pensados pra gerar desejo em negócio local." data-tags="Desejo,Ritmo,CTA" data-link="https://www.instagram.com/newvictor__">
-        <span class="fone-in">
-          <video muted loop playsinline autoplay preload="metadata"></video>
-          <span class="fone-rec"><i></i>REC</span>
-          <span class="fone-top">TOP 2</span>
-          <span class="fone-cap">TOQUE P/ SOM</span>
-        </span>
-      </button>
-      <button class="fone f2" type="button" data-cursor="SOM" data-video="demo:demo1" data-arte="TOP 1" data-titulo="Autoridade e conteúdo" data-formato="Reel · 9:16" data-dur="0:34" data-ano="2026" data-desc="Meu melhor take: edição de autoridade com corte seco, legenda dinâmica e ritmo que segura atenção do início ao fim." data-tags="Corte dinâmico,Legendas,Ritmo" data-link="https://www.instagram.com/newvictor__">
-        <span class="fone-in">
-          <video muted loop playsinline autoplay preload="metadata"></video>
-          <span class="fone-rec"><i></i>REC</span>
-          <span class="fone-top">TOP 1</span>
-          <span class="fone-cap">TOQUE P/ SOM</span>
-        </span>
-      </button>
-      <button class="fone f3" type="button" data-cursor="SOM" data-video="demo:demo2" data-arte="TOP 3" data-titulo="Conteúdo educativo" data-formato="Reel · 9:16" data-dur="0:07" data-ano="2026" data-desc="Edição de conteúdo educativo que prende do primeiro segundo: gancho forte, corte seco e mensagem que gera identificação." data-tags="Gancho,Educativo,Identificação" data-link="https://www.instagram.com/newvictor__">
-        <span class="fone-in">
-          <video muted loop playsinline autoplay preload="metadata"></video>
-          <span class="fone-rec"><i></i>REC</span>
-          <span class="fone-top">TOP 3</span>
-          <span class="fone-cap">TOQUE P/ SOM</span>
-        </span>
-      </button>
     </div>
   </div>
 
@@ -1298,6 +1262,14 @@ window.DEMOS_NEWVICTOR = {
     if(!v) return '';
     return v.startsWith('demo:') ? (DEMOS[v.slice(5)] || '') : v;
   }
+
+  /* ---------- Clientes: tocar um player grande pausa o outro ---------- */
+  const videosCliente = $$('.cliente-player video');
+  videosCliente.forEach(v => {
+    v.addEventListener('play', () => {
+      videosCliente.forEach(outro => { if(outro !== v) outro.pause(); });
+    });
+  });
 
   /* ---------- Toast ---------- */
   const toast = $('#toast');
