@@ -509,6 +509,28 @@ body::after{
    ATO 4 — CONFIRA A QUALIDADE (vídeos holo)
    ============================================================ */
 #qualidade .pf{top:4%;left:-3vw}
+
+/* ============================================================
+   CLIENTES — players grandes
+   ============================================================ */
+#clientes .pf{top:0;right:-4vw;left:auto}
+.clientes-grade{
+  max-width:900px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:clamp(24px,4vw,48px);justify-items:center;
+}
+.cliente-card{width:100%;max-width:340px;text-align:center}
+.cliente-player{
+  aspect-ratio:9/16;border-radius:18px;overflow:hidden;
+  background:#000;border:2px solid var(--ink);
+  box-shadow:0 30px 60px -22px rgba(10,10,11,.4);
+}
+.cliente-player video{width:100%;height:100%;object-fit:cover;display:block}
+.cliente-nome{
+  font-family:var(--titulo);font-weight:700;font-size:18px;letter-spacing:-.01em;
+  margin-top:16px;
+}
+.cliente-nome::before{content:"● ";color:var(--rec)}
 .grade{
   max-width:1120px;margin:0 auto;
   display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
@@ -1014,7 +1036,8 @@ body::after{
 <nav class="trilho" id="trilho" aria-label="Progresso da página">
   <a href="#topo" data-sec="topo"><i></i><span>00 · INÍCIO</span></a>
   <a href="#qualidade" data-sec="qualidade"><i></i><span>01 · PORTFÓLIO</span></a>
-  <a href="#contato" data-sec="contato"><i></i><span>02 · CONTATO</span></a>
+  <a href="#clientes" data-sec="clientes"><i></i><span>02 · CLIENTES</span></a>
+  <a href="#contato" data-sec="contato"><i></i><span>03 · CONTATO</span></a>
 </nav>
 
 <!-- ============ NAV ============ -->
@@ -1022,6 +1045,7 @@ body::after{
   <a class="logo marca" href="#topo" aria-label="New Victor — início"><svg viewBox="0 0 100 96" aria-hidden="true"><polygon class="tri fundo" points="100,6.8 100,89.2 39.7,48"/><polygon class="tri frente" points="70.3,0 70.3,96 0,48"/></svg><span>NEW<span class="rec">VICTOR</span></span><sup>.EDIT</sup></a>
   <ul class="nav-links">
     <li><a href="#qualidade">Portfólio</a></li>
+    <li><a href="#clientes">Clientes</a></li>
     <li><a href="#contato">Contato</a></li>
   </ul>
   <a class="nav-cta" href="#contato" data-cursor="IR">Falar comigo</a>
@@ -1129,6 +1153,37 @@ body::after{
   <p class="carrossel-dica">USE AS SETAS PARA GIRAR <b>·</b> CLIQUE NO VÍDEO DA FRENTE PARA OUVIR</p>
 </section>
 
+<!-- ============ CLIENTES — players grandes ============ -->
+<section class="secao" id="clientes">
+  <span class="varredura" aria-hidden="true"></span>
+  <span class="pf pf-clara" data-par="0.08" aria-hidden="true">CLIENTES</span>
+  <div class="cabecalho">
+    <p class="kicker rev" data-decrypt="PORTFÓLIO // CLIENTES">PORTFÓLIO // CLIENTES</p>
+    <h2 class="rev d1">Edição pra quem <em>já confiou.</em></h2>
+    <p class="rev d2">Perfis reais que já passaram pela minha edição — assiste completo, do jeito que foi ao ar.</p>
+  </div>
+
+  <!-- ✏️ EDITE AQUI: troque o src de cada <video> pelo arquivo final do cliente. -->
+  <div class="clientes-grade">
+    <div class="cliente-card rev">
+      <div class="cliente-player">
+        <video controls playsinline preload="metadata">
+          <source src="videos/demo1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <h3 class="cliente-nome">Hanah Franklin</h3>
+    </div>
+    <div class="cliente-card rev d1">
+      <div class="cliente-player">
+        <video controls playsinline preload="metadata">
+          <source src="videos/demo2.mp4" type="video/mp4">
+        </video>
+      </div>
+      <h3 class="cliente-nome">Cynthia Senek</h3>
+    </div>
+  </div>
+</section>
+
 <div class="estudio">
 <!-- ============ CONTATO ============ -->
 <section class="secao" id="porque">
@@ -1154,6 +1209,7 @@ body::after{
     <span class="logo marca"><svg viewBox="0 0 100 96" aria-hidden="true"><polygon class="tri fundo" points="100,6.8 100,89.2 39.7,48"/><polygon class="tri frente" points="70.3,0 70.3,96 0,48"/></svg><span>NEW<span class="rec">VICTOR</span></span></span>
     <nav aria-label="Links do rodapé">
       <a href="#qualidade">PORTFÓLIO</a>
+      <a href="#clientes">CLIENTES</a>
       <a href="#contato">CONTATO</a>
     </nav>
     <span>© 2026 NEW VICTOR · NEWVICTOR.EDIT BUILD 2030.REC</span>
@@ -1191,7 +1247,7 @@ body::after{
   <button class="j-btn" id="j-prev" type="button" aria-label="Seção anterior" data-cursor="VOLTAR" disabled>◀</button>
   <div class="j-info">
     <span class="j-rotulo mono" id="j-rotulo">INÍCIO</span>
-    <span class="j-segs" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="j-segs" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
   </div>
   <button class="j-btn j-next" id="j-next" type="button" data-cursor="AVANÇAR">PRÓXIMO ▶</button>
 </div>
@@ -1333,7 +1389,7 @@ window.DEMOS_NEWVICTOR = {
         }
       });
     }, {rootMargin:'-40% 0px -50% 0px'});
-    ['#hero','#qualidade','#contato'].forEach(sel=>{
+    ['#hero','#qualidade','#clientes','#contato'].forEach(sel=>{
       const el = document.querySelector(sel);
       if(el) ioSec.observe(el);
     });
@@ -1344,6 +1400,7 @@ window.DEMOS_NEWVICTOR = {
   const jSecoes = [
     {id:'topo', nome:'INÍCIO'},
     {id:'qualidade', nome:'PORTFÓLIO'},
+    {id:'clientes', nome:'CLIENTES'},
     {id:'contato', nome:'CONTATO'}
   ];
   const jRotulo = $('#j-rotulo');
