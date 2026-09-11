@@ -5,12 +5,12 @@
      Os pixels da Story Rec foram removidos porque pertencem a outro negócio. -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>New Victor — Editor de conteúdo para Instagram</title>
+<title>NEWVICTOR.EDIT — Editor de conteúdo para Instagram</title>
 <meta name="description" content="Portfólio de edição de vídeo e conteúdo para Instagram. Reels com corte, ritmo e legenda que prendem atenção do primeiro segundo. Vagas limitadas por mês.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 96'%3E%3Cpolygon points='100,6.8 100,89.2 39.7,48' fill='%23fff'/%3E%3Cpolygon points='70.3,0 70.3,96 0,48' fill='%23d60000'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a0a0b'/%3E%3Ccircle cx='50' cy='50' r='30' fill='%23ffc300'/%3E%3C/svg%3E">
 <style>
 /* ============================================================
    NEWVICTOR.EDIT — portfólio de edição de vídeo/conteúdo
@@ -18,7 +18,7 @@
    Sistema de edição: partículas, decrypt,
    glitch, HUD lateral, holo, magnetismo e scanline.
    Funil: curiosidade → método → portfólio → vagas → contato.
-   Paleta: preto / branco / vermelho oficial #D60000
+   Paleta: preto / branco / vermelho oficial #ffc300
    ✏️ Pontos de edição marcados com "EDITE AQUI"
    ============================================================ */
 
@@ -30,9 +30,9 @@
   --studio-2:#ececea;
   --grafite:#55555b;
   --nevoa:#a9a9ad;
-  --rec:#d60000;
-  --rec-2:#f21414;
-  --rec-escuro:#8a0000;
+  --rec:#ffc300;
+  --rec-2:#ffdd55;
+  --rec-escuro:#8a6300;
   --display:'Archivo Black', Impact, sans-serif;
   --titulo:'Poppins', system-ui, sans-serif;
   --body:'Archivo', system-ui, sans-serif;
@@ -53,7 +53,7 @@ body{
 a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 img{max-width:100%;display:block}
-::selection{background:var(--rec);color:#fff}
+::selection{background:var(--rec);color:var(--ink)}
 :focus-visible{outline:3px solid var(--rec-2);outline-offset:3px;border-radius:2px}
 ::-webkit-scrollbar{width:10px;height:10px}
 ::-webkit-scrollbar-track{background:var(--ink)}
@@ -83,7 +83,7 @@ body::after{
 .trilho::after{
   content:"";position:absolute;left:4px;top:-8px;width:2px;
   height:calc((100% + 16px) * var(--p,0));
-  background:var(--rec-2);box-shadow:0 0 8px rgba(242,20,20,.8);
+  background:var(--rec-2);box-shadow:0 0 8px rgba(255,221,85,.8);
   transition:height .1s linear;
 }
 .trilho a{
@@ -101,7 +101,7 @@ body::after{
 }
 .trilho a:hover span,.trilho a.ativo span{opacity:1;transform:none}
 .trilho a.ativo{color:var(--studio)}
-.trilho a.ativo i{background:var(--rec);border-color:var(--rec-2);box-shadow:0 0 10px rgba(214,0,0,.9)}
+.trilho a.ativo i{background:var(--rec);border-color:var(--rec-2);box-shadow:0 0 10px rgba(255,195,0,.9)}
 .nav.clara ~ main .x{color:red}
 
 /* ============================================================
@@ -117,10 +117,10 @@ body::after{
 }
 .pf-clara{color:rgba(10,10,11,.05)}
 .pf-escura{color:rgba(247,247,245,.045)}
-.pf-rec{color:rgba(214,0,0,.07)}
+.pf-rec{color:rgba(255,195,0,.07)}
 .bokeh{
   position:absolute;z-index:0;border-radius:50%;
-  background:radial-gradient(circle,rgba(214,0,0,.42),transparent 68%);
+  background:radial-gradient(circle,rgba(255,195,0,.42),transparent 68%);
   filter:blur(46px);pointer-events:none;
   animation:flutuar 16s ease-in-out infinite alternate;
 }
@@ -144,7 +144,7 @@ body::after{
   position:absolute;left:0;right:0;top:0;height:2px;z-index:2;
   background:linear-gradient(90deg,transparent,var(--rec-2) 40%,#fff 50%,var(--rec-2) 60%,transparent);
   opacity:0;pointer-events:none;
-  box-shadow:0 0 18px rgba(242,20,20,.7);
+  box-shadow:0 0 18px rgba(255,221,85,.7);
 }
 .visto > .varredura{animation:varrer-y 1.1s ease-out forwards}
 @keyframes varrer-y{
@@ -213,7 +213,7 @@ body::after{
 .boot-barra i{
   display:block;height:100%;width:0;
   background:linear-gradient(90deg,var(--rec-escuro),var(--rec-2));
-  box-shadow:0 0 12px rgba(214,0,0,.8);
+  box-shadow:0 0 12px rgba(255,195,0,.8);
   transition:width .3s ease;
 }
 .boot-vs{font-size:10px;color:#555;letter-spacing:.24em}
@@ -228,6 +228,11 @@ body::after{
 .marca .tri{transform-box:fill-box}
 .marca .fundo{fill:currentColor}
 .marca .frente{fill:var(--rec)}
+.marca sup{
+  font-family:var(--mono);font-size:9px;color:var(--rec-2);
+  letter-spacing:.1em;margin-left:6px;font-weight:700;
+}
+.boot .marca sup{font-size:clamp(10px,1.6vw,16px)}
 .marca .rec{color:var(--rec)}
 
 /* ============================================================
@@ -318,19 +323,19 @@ body::after{
   color:var(--studio);
 }
 .hero h1 .marcar{
-  position:relative;display:inline-block;padding:0 .14em;color:#fff;
+  position:relative;display:inline-block;padding:0 .14em;color:var(--ink);
 }
 .hero h1 .marcar::before{
   content:"";position:absolute;inset:8% -3% 4% -3%;z-index:-1;
   background:var(--rec);border-radius:4px;
   transform:skew(-6deg) scaleX(0);transform-origin:left center;
-  box-shadow:0 0 30px rgba(214,0,0,.55);
+  box-shadow:0 0 30px rgba(255,195,0,.55);
   animation:marcar .55s cubic-bezier(.22,1,.36,1) 3.45s forwards;
 }
 @keyframes marcar{to{transform:skew(-6deg) scaleX(1)}}
 .hero h1 .fogo{
   color:var(--rec-2);
-  text-shadow:0 0 34px rgba(242,20,20,.55), 0 0 8px rgba(242,20,20,.4);
+  text-shadow:0 0 34px rgba(255,221,85,.55), 0 0 8px rgba(255,221,85,.4);
 }
 .hero-sub{
   margin:24px auto 34px;max-width:48ch;
@@ -348,11 +353,11 @@ body::after{
 .btn:active{transform:scale(.96)}
 .btn svg{width:19px;height:19px;flex:0 0 auto}
 .btn-rec{
-  background:var(--rec);color:#fff;
-  box-shadow:0 14px 38px rgba(214,0,0,.4);
+  background:var(--rec);color:var(--ink);
+  box-shadow:0 14px 38px rgba(255,195,0,.4);
 }
 .btn-rec:hover{background:var(--rec-2)}
-.btn-rec .ponto{width:9px;height:9px;border-radius:50%;background:#fff}
+.btn-rec .ponto{width:9px;height:9px;border-radius:50%;background:var(--ink)}
 .btn-borda{border:2px solid var(--studio);color:var(--studio)}
 .btn-borda:hover{background:var(--studio);color:var(--ink)}
 .btn-whatsapp{background:#25D366;color:#fff;box-shadow:0 14px 38px rgba(37,211,102,.35)}
@@ -379,10 +384,10 @@ body::after{
 .fone:hover,.fone:focus-visible{
   transform:rotate(var(--rot)) translateY(calc(var(--dy) - 12px)) scale(1.04);
   border-color:var(--rec-2);
-  box-shadow:0 40px 90px rgba(0,0,0,.7), 0 0 40px rgba(214,0,0,.45);
+  box-shadow:0 40px 90px rgba(0,0,0,.7), 0 0 40px rgba(255,195,0,.45);
 }
 .fone.f1{--rot:-7deg;--dy:18px}
-.fone.f2{width:clamp(146px,13.4vw,224px);z-index:2;border-color:rgba(214,0,0,.55);box-shadow:0 40px 90px rgba(0,0,0,.7), 0 0 44px rgba(214,0,0,.3)}
+.fone.f2{width:clamp(146px,13.4vw,224px);z-index:2;border-color:rgba(255,195,0,.55);box-shadow:0 40px 90px rgba(0,0,0,.7), 0 0 44px rgba(255,195,0,.3)}
 .fone.f3{--rot:7deg;--dy:24px}
 .fone-in{position:absolute;inset:0;animation:boiar 6.5s ease-in-out infinite}
 .fone.f1 .fone-in{animation-delay:-2.1s}
@@ -413,9 +418,9 @@ body::after{
   background:var(--ink);color:var(--rec-2);
   overflow:hidden;white-space:nowrap;
   padding:12px 0;position:relative;z-index:2;
-  border-top:1px solid rgba(214,0,0,.55);
-  border-bottom:1px solid rgba(214,0,0,.55);
-  box-shadow:0 0 24px rgba(214,0,0,.25), inset 0 0 24px rgba(214,0,0,.12);
+  border-top:1px solid rgba(255,195,0,.55);
+  border-bottom:1px solid rgba(255,195,0,.55);
+  box-shadow:0 0 24px rgba(255,195,0,.25), inset 0 0 24px rgba(255,195,0,.12);
 }
 .marquee-trilha{display:inline-flex;animation:rolar 26s linear infinite}
 .marquee span{
@@ -470,7 +475,7 @@ body::after{
 .entrega .num{font-family:var(--display);font-size:26px;color:var(--rec);display:block;margin-bottom:8px}
 .entrega h3{font-family:var(--titulo);font-weight:700;font-size:17px;letter-spacing:-.01em;margin-bottom:6px;line-height:1.2}
 .entrega p{color:var(--grafite);font-size:13.5px;line-height:1.5}
-.entrega.destaque{border-color:var(--rec);box-shadow:0 0 0 3px rgba(214,0,0,.14)}
+.entrega.destaque{border-color:var(--rec);box-shadow:0 0 0 3px rgba(255,195,0,.14)}
 .entrega.destaque:hover{box-shadow:8px 8px 0 var(--rec)}
 
 .selo-zero{
@@ -483,15 +488,15 @@ body::after{
 }
 .selo-zero::after{
   content:"";position:absolute;right:-14%;top:-40%;width:46%;aspect-ratio:1;
-  background:radial-gradient(circle,rgba(214,0,0,.35),transparent 68%);
+  background:radial-gradient(circle,rgba(255,195,0,.35),transparent 68%);
   filter:blur(30px);pointer-events:none;
 }
 .selo-zero .zero{
   font-family:var(--display);font-size:44px;color:var(--rec-2);
   border:3px solid var(--rec);border-radius:10px;
   padding:8px 16px;transform:rotate(-3deg);flex:0 0 auto;
-  background:rgba(214,0,0,.08);
-  text-shadow:0 0 18px rgba(214,0,0,.6);
+  background:rgba(255,195,0,.08);
+  text-shadow:0 0 18px rgba(255,195,0,.6);
 }
 .selo-zero div{flex:1;min-width:250px;position:relative;z-index:1}
 .selo-zero h3{font-family:var(--titulo);font-weight:700;font-size:clamp(19px,2.6vw,24px);letter-spacing:-.02em;margin-bottom:6px}
@@ -545,7 +550,7 @@ body::after{
 }
 .cliente-card:hover{
   border-color:var(--rec);transform:translateY(-4px);
-  box-shadow:0 30px 60px -22px rgba(10,10,11,.5),0 0 30px rgba(214,0,0,.22);
+  box-shadow:0 30px 60px -22px rgba(10,10,11,.5),0 0 30px rgba(255,195,0,.22);
 }
 .cliente-ig{
   width:100%;display:block;
@@ -579,7 +584,7 @@ body::after{
 .take:hover,.take:focus-visible{
   --ty:-6px;
   border-color:var(--rec);
-  box-shadow:0 26px 50px rgba(0,0,0,.55), 0 0 26px rgba(214,0,0,.35);
+  box-shadow:0 26px 50px rgba(0,0,0,.55), 0 0 26px rgba(255,195,0,.35);
 }
 /* cantoneiras HUD no hover */
 .take::after{
@@ -609,7 +614,7 @@ body::after{
    · hover/foco = play mudo · clique = player com som
    · os 4 primeiros usam demos embutidos ("demo:demoN") — troque pela URL real */
 .tk-1{background:linear-gradient(165deg,var(--rec) 0%,var(--rec-escuro) 60%,#2a0306 100%);font-size:38px;color:#fff}
-.tk-2{background:linear-gradient(200deg,#232326 0%,#000 100%);font-size:36px;color:var(--rec);text-shadow:0 0 26px rgba(214,0,0,.5)}
+.tk-2{background:linear-gradient(200deg,#232326 0%,#000 100%);font-size:36px;color:var(--rec);text-shadow:0 0 26px rgba(255,195,0,.5)}
 .tk-3{background:linear-gradient(120deg,#fbfbf9 0%,#d9d9d5 100%);font-size:34px;color:var(--ink)}
 .tk-3 em{font-style:normal;color:var(--rec)}
 .tk-4{background:conic-gradient(from 220deg at 60% 40%,#000,#3a050a,var(--rec-escuro),#000);font-size:34px;color:#fff}
@@ -627,7 +632,7 @@ body::after{
 /* brilho holográfico que varre o card */
 .take .holo{
   position:absolute;inset:0;z-index:2;pointer-events:none;
-  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.22) 50%,rgba(214,0,0,.18) 54%,transparent 62%);
+  background:linear-gradient(105deg,transparent 42%,rgba(255,255,255,.22) 50%,rgba(255,195,0,.18) 54%,transparent 62%);
   transform:translateX(-130%);
 }
 .take:hover .holo{animation:varrer-x .85s ease}
@@ -637,7 +642,7 @@ body::after{
   background:rgba(255,255,255,.25);opacity:0;transition:opacity .2s;z-index:2;
 }
 .take.tocando .take-progresso{opacity:1}
-.take-progresso i{display:block;height:100%;width:0;background:var(--rec-2);box-shadow:0 0 8px rgba(242,20,20,.9)}
+.take-progresso i{display:block;height:100%;width:0;background:var(--rec-2);box-shadow:0 0 8px rgba(255,221,85,.9)}
 .take-rec{
   position:absolute;top:12px;left:12px;
   display:flex;align-items:center;gap:7px;
@@ -705,14 +710,14 @@ body::after{
 .cta-final{
   max-width:980px;margin:36px auto 0;
   background:var(--ink);color:var(--studio);
-  border:1px solid rgba(214,0,0,.5);border-radius:16px;
+  border:1px solid rgba(255,195,0,.5);border-radius:16px;
   padding:44px clamp(22px,5vw,52px);
   text-align:center;position:relative;overflow:hidden;
-  box-shadow:0 40px 80px -30px rgba(10,10,11,.55), 0 0 34px rgba(214,0,0,.22);
+  box-shadow:0 40px 80px -30px rgba(10,10,11,.55), 0 0 34px rgba(255,195,0,.22);
 }
 .cta-final::before{
   content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 70% 90% at 50% 115%,rgba(214,0,0,.3),transparent 65%);
+  background:radial-gradient(ellipse 70% 90% at 50% 115%,rgba(255,195,0,.3),transparent 65%);
 }
 .cta-final > *{position:relative}
 .cta-tag{font-size:11px;font-weight:700;letter-spacing:.26em;color:var(--rec-2);margin-bottom:14px}
@@ -755,7 +760,7 @@ body::after{
 .claquete{
   width:min(520px,100%);max-height:90vh;overflow-y:auto;
   background:var(--ink);color:var(--studio);
-  border-radius:12px;box-shadow:0 30px 90px rgba(0,0,0,.8), 0 0 40px rgba(214,0,0,.25);
+  border-radius:12px;box-shadow:0 30px 90px rgba(0,0,0,.8), 0 0 40px rgba(255,195,0,.25);
   transform:translateY(18px) rotate(-.4deg);
   transition:transform .3s ease;
 }
@@ -828,7 +833,7 @@ body::after{
   border:2px solid var(--rec);
   font-family:var(--mono);font-weight:700;font-size:13px;
   padding:12px 22px;border-radius:999px;
-  box-shadow:0 10px 40px rgba(0,0,0,.5), 0 0 20px rgba(214,0,0,.4);
+  box-shadow:0 10px 40px rgba(0,0,0,.5), 0 0 20px rgba(255,195,0,.4);
   transition:transform .35s cubic-bezier(.22,1,.36,1);
   pointer-events:none;max-width:92vw;text-align:center;
 }
@@ -842,9 +847,9 @@ body::after{
   position:fixed;left:50%;bottom:18px;transform:translate(-50%,110px);
   z-index:75;display:flex;align-items:center;gap:14px;
   background:rgba(10,10,11,.92);backdrop-filter:blur(10px);
-  border:1px solid rgba(214,0,0,.5);border-radius:999px;
+  border:1px solid rgba(255,195,0,.5);border-radius:999px;
   padding:9px 12px;
-  box-shadow:0 14px 40px rgba(0,0,0,.5), 0 0 22px rgba(214,0,0,.25);
+  box-shadow:0 14px 40px rgba(0,0,0,.5), 0 0 22px rgba(255,195,0,.25);
   transition:transform .5s cubic-bezier(.22,1,.36,1);
 }
 .jornada.on{transform:translate(-50%,0)}
@@ -856,7 +861,7 @@ body::after{
   display:inline-flex;align-items:center;gap:6px;white-space:nowrap;
 }
 .j-btn:hover{border-color:var(--studio)}
-.j-btn.j-next{background:var(--rec);border-color:var(--rec);color:#fff}
+.j-btn.j-next{background:var(--rec);border-color:var(--rec);color:var(--ink)}
 .j-btn.j-next:hover{background:var(--rec-2)}
 .j-btn[disabled]{opacity:.35;pointer-events:none}
 .j-info{display:flex;flex-direction:column;gap:5px;align-items:center;min-width:170px}
@@ -868,21 +873,21 @@ body::after{
   background:rgba(247,247,245,.22);font-style:normal;
   transition:background-color .3s,box-shadow .3s;
 }
-.j-segs i.cheia{background:var(--rec-2);box-shadow:0 0 8px rgba(242,20,20,.8)}
+.j-segs i.cheia{background:var(--rec-2);box-shadow:0 0 8px rgba(255,221,85,.8)}
 
 /* ---------- Pontes (ganchos entre seções) ---------- */
 .ponte{
   max-width:980px;margin:32px auto 0;
   background:var(--ink);color:var(--studio);
-  border:1px solid rgba(214,0,0,.45);border-radius:14px;
+  border:1px solid rgba(255,195,0,.45);border-radius:14px;
   padding:24px clamp(20px,4vw,34px);
   display:flex;flex-wrap:wrap;align-items:center;gap:18px;justify-content:space-between;
   position:relative;overflow:hidden;
-  box-shadow:0 30px 60px -26px rgba(10,10,11,.5), 0 0 26px rgba(214,0,0,.18);
+  box-shadow:0 30px 60px -26px rgba(10,10,11,.5), 0 0 26px rgba(255,195,0,.18);
 }
 .ponte::before{
   content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 50% 130% at 100% 50%,rgba(214,0,0,.18),transparent 60%);
+  background:radial-gradient(ellipse 50% 130% at 100% 50%,rgba(255,195,0,.18),transparent 60%);
 }
 .ponte p{
   flex:1;min-width:250px;position:relative;
@@ -901,7 +906,7 @@ body::after{
 }
 .ponte.clara p b{color:var(--rec)}
 .ponte.clara .ponte-tag{color:var(--rec)}
-.ponte.clara::before{background:radial-gradient(ellipse 50% 130% at 100% 50%,rgba(214,0,0,.1),transparent 60%)}
+.ponte.clara::before{background:radial-gradient(ellipse 50% 130% at 100% 50%,rgba(255,195,0,.1),transparent 60%)}
 
 /* ---------- Carrossel sobreposto (coverflow) ---------- */
 .cover{
@@ -935,16 +940,16 @@ body::after{
 .cover .take-monitor{background:#000;border-radius:14px}
 .cover .take video.preview{opacity:1;border-radius:14px}
 .cover .take .take-progresso{display:none}
-.cover .take.frente{border-color:var(--rec);box-shadow:0 40px 90px rgba(0,0,0,.72), 0 0 46px rgba(214,0,0,.4)}
+.cover .take.frente{border-color:var(--rec);box-shadow:0 40px 90px rgba(0,0,0,.72), 0 0 46px rgba(255,195,0,.4)}
 .cover .take:not(.frente) .take-rec,
 .cover .take:not(.frente) .cov-play{opacity:0}
 .cov-play{
   position:absolute;top:50%;left:50%;z-index:4;
   width:62px;height:62px;margin:-31px 0 0 -31px;
-  border-radius:50%;background:rgba(214,0,0,.92);
-  color:#fff;font-size:22px;line-height:62px;text-align:center;
+  border-radius:50%;background:rgba(255,195,0,.92);
+  color:var(--ink);font-size:22px;line-height:62px;text-align:center;
   padding-left:5px;
-  box-shadow:0 12px 34px rgba(214,0,0,.5), 0 0 0 8px rgba(247,247,245,.12);
+  box-shadow:0 12px 34px rgba(255,195,0,.5), 0 0 0 8px rgba(247,247,245,.12);
   transition:transform .25s cubic-bezier(.22,1,.36,1),opacity .3s,background-color .2s;
   pointer-events:none;
 }
@@ -984,7 +989,7 @@ body::after{
 .cover-seta:hover{background:var(--rec);border-color:var(--rec);transform:scale(1.08)}
 .cover-seta:active{transform:scale(.94)}
 .cover.claro .cover-seta{background:rgba(255,255,255,.9);border-color:rgba(10,10,11,.2);color:var(--ink)}
-.cover.claro .cover-seta:hover{background:var(--rec);border-color:var(--rec);color:#fff}
+.cover.claro .cover-seta:hover{background:var(--rec);border-color:var(--rec);color:var(--ink)}
 .cover-pontos{display:flex;gap:9px;justify-content:center;margin-top:18px}
 .cover-pontos button{
   width:9px;height:9px;border-radius:50%;padding:0;
@@ -1049,12 +1054,12 @@ body::after{
 <!-- ============ BOOT TERMINAL ============ -->
 <div class="boot" id="boot" aria-hidden="true">
   <div class="marca" aria-label="New Victor">
-    <span>NEW<span class="rec">VICTOR</span></span>
+    <span>NEW<span class="rec">VICTOR</span></span><sup>.EDIT</sup>
   </div>
   <div class="boot-term">
-    <div class="boot-linha" id="boot-linha">&gt; INICIALIZANDO NEW VICTOR…</div>
+    <div class="boot-linha" id="boot-linha">&gt; INICIALIZANDO NEWVICTOR.EDIT…</div>
     <div class="boot-barra"><i id="boot-prog"></i></div>
-    <div class="boot-vs">NEW VICTOR · BUILD 2030.REC</div>
+    <div class="boot-vs">NEWVICTOR.EDIT · BUILD 2030.REC</div>
   </div>
 </div>
 
@@ -1068,7 +1073,7 @@ body::after{
 
 <!-- ============ NAV ============ -->
 <header class="nav" id="nav">
-  <a class="logo marca" href="#topo" aria-label="New Victor — início"><span>NEW<span class="rec">VICTOR</span></span></a>
+  <a class="logo marca" href="#topo" aria-label="New Victor — início"><span>NEW<span class="rec">VICTOR</span></span><sup>.EDIT</sup></a>
   <span class="logo-tag">Editor de conteúdo <b>·</b> Instagram</span>
   <ul class="nav-links">
     <li><a href="#clientes">Clientes</a></li>
@@ -1217,7 +1222,7 @@ body::after{
       <a href="#qualidade">PORTFÓLIO</a>
       <a href="#contato">CONTATO</a>
     </nav>
-    <span>© 2026 NEW VICTOR · BUILD 2030.REC</span>
+    <span>© 2026 NEW VICTOR · NEWVICTOR.EDIT BUILD 2030.REC</span>
     <span class="fim">FIM. <b>●</b> MAS SEU PRÓXIMO VÍDEO — <a href="#contato" style="color:var(--studio)">A GENTE JÁ TÁ EDITANDO</a>.</span>
   </div>
 </footer>
@@ -1310,7 +1315,7 @@ window.DEMOS_NEWVICTOR = {
   const bootLinha = $('#boot-linha');
   const bootProg = $('#boot-prog');
   const falas = [
-    ['&gt; INICIALIZANDO NEW VICTOR…', 14],
+    ['&gt; INICIALIZANDO NEWVICTOR.EDIT…', 14],
     ['&gt; CARREGANDO MÓDULOS DE EDIÇÃO…', 38],
     ['&gt; CALIBRANDO CORTE // PUXANDO FOCO…', 62],
     ['&gt; SINCRONIZANDO TIMELINE COM SCROLL…', 86],
@@ -1517,7 +1522,7 @@ window.DEMOS_NEWVICTOR = {
           const a = pts[i], b = pts[j];
           const dx = a.x-b.x, dy = a.y-b.y, d2 = dx*dx+dy*dy;
           if(d2 < 12100){
-            ctx.strokeStyle = 'rgba(214,0,0,' + (0.22 * (1 - d2/12100)).toFixed(3) + ')';
+            ctx.strokeStyle = 'rgba(255,195,0,' + (0.22 * (1 - d2/12100)).toFixed(3) + ')';
             ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
           }
         }
