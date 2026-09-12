@@ -544,14 +544,14 @@ body::after{
   position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none;
   opacity:.6;filter:blur(80px) saturate(1.2);
   background:
-    radial-gradient(38% 42% at 80% 16%, var(--dv-ciano) 0%, transparent 70%),
-    radial-gradient(34% 40% at 94% 44%, var(--dv-laranja) 0%, transparent 72%),
-    radial-gradient(32% 36% at 74% 54%, var(--dv-amarelo) 0%, transparent 74%);
+    radial-gradient(ellipse 38% 42% at 80% 16%, var(--dv-ciano) 0%, transparent 70%),
+    radial-gradient(ellipse 34% 40% at 94% 44%, var(--dv-laranja) 0%, transparent 72%),
+    radial-gradient(ellipse 32% 36% at 74% 54%, var(--dv-amarelo) 0%, transparent 74%);
   animation:flutuar 20s ease-in-out infinite alternate;
 }
 .hero-timeline-bg::after{
   content:"";position:absolute;inset:-15%;
-  background:radial-gradient(60% 60% at 82% 32%, rgba(10,10,11,0) 0%, var(--ink) 78%);
+  background:radial-gradient(ellipse 60% 60% at 82% 32%, rgba(10,10,11,0) 0%, var(--ink) 78%);
 }
 
 /* ============================================================
