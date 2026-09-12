@@ -165,7 +165,6 @@ body::after{
              transform .7s cubic-bezier(.34,1.56,.64,1);
 }
 .rev-bounce.visivel{opacity:1;transform:none}
-.dv-ilustracao.visivel{opacity:.16}
 
 /* varredura de scanline quando a seção entra */
 .varredura{
@@ -465,7 +464,7 @@ body::after{
 .estudio{background:var(--studio);color:var(--ink)}
 .secao{padding:64px clamp(16px,5vw,64px);position:relative;overflow:hidden}
 .secao > *{position:relative;z-index:1}
-.secao > .pf,.secao > .bokeh,.secao > .dv-ilustracao{z-index:0}
+.secao > .pf,.secao > .bokeh{z-index:0}
 .cabecalho{max-width:980px;margin:0 auto 28px}
 .kicker{
   font-family:var(--mono);font-size:12px;font-weight:700;
@@ -542,17 +541,30 @@ body::after{
 
 /* ---------- fundo: ícone do DaVinci Resolve gigante, desfocado, sangrando no canto ---------- */
 .hero-timeline-bg{
-  position:absolute;z-index:0;pointer-events:none;overflow:visible;
-  width:56vw;max-width:760px;aspect-ratio:1/1;
-  top:-18%;right:-16%;
-  border-radius:22%;
-  opacity:.7;filter:blur(55px) saturate(1.2);
-  background:
-    radial-gradient(ellipse 58% 58% at 26% 30%, var(--dv-ciano) 0%, transparent 64%),
-    radial-gradient(ellipse 56% 56% at 76% 42%, var(--dv-laranja) 0%, transparent 64%),
-    radial-gradient(ellipse 60% 60% at 42% 80%, var(--dv-amarelo) 0%, transparent 66%),
-    var(--ink-2);
-  animation:flutuar 20s ease-in-out infinite alternate;
+  position:absolute;z-index:0;pointer-events:none;
+  width:44vw;max-width:600px;aspect-ratio:1/1;
+  top:-14%;right:-12%;
+  border-radius:24%;
+  background:var(--ink-2);
+  box-shadow:
+    -60px -50px 110px 16px var(--dv-ciano),
+     70px  20px 120px 16px var(--dv-laranja),
+    -30px  90px 110px 16px var(--dv-amarelo);
+  filter:blur(50px);
+  opacity:.6;
+  animation:flutuar 22s ease-in-out infinite alternate;
+}
+.hero-timeline-bg2{
+  position:absolute;z-index:0;pointer-events:none;
+  width:26vw;max-width:340px;aspect-ratio:1/1;
+  bottom:-10%;left:-8%;
+  border-radius:24%;
+  background:var(--ink-2);
+  box-shadow:
+    -30px -24px 80px 12px var(--dv-amarelo),
+     34px  20px 86px 12px var(--dv-ciano);
+  filter:blur(42px);
+  opacity:.4;
 }
 
 /* ============================================================
@@ -564,15 +576,6 @@ body::after{
    ATO 4 — CONFIRA A QUALIDADE (vídeos holo)
    ============================================================ */
 #qualidade .pf{top:4%;left:-3vw}
-
-/* ---------- fundo: timeline + rodas de cor, estilo DaVinci Resolve (watermark) ---------- */
-.dv-ilustracao{
-  position:absolute;top:6%;left:0;right:0;margin:0 auto;
-  width:min(1200px,92%);
-  pointer-events:none;filter:blur(1px);
-}
-.dv-ilustracao svg{display:block;width:100%;height:auto}
-.dv-ilustracao .dv-legenda{display:none}
 
 /* ============================================================
    CLIENTES — players grandes com prova real (print do Instagram)
@@ -1130,6 +1133,7 @@ body::after{
 <section class="hero" aria-label="Apresentação" id="hero">
   <span class="pf pf-escura" data-par="0.12" aria-hidden="true">EDIT</span>
   <div class="hero-timeline-bg" aria-hidden="true"></div>
+  <div class="hero-timeline-bg2" aria-hidden="true"></div>
   <canvas id="particulas" aria-hidden="true"></canvas>
   <span class="bokeh b1" aria-hidden="true"></span>
   <span class="bokeh b2" aria-hidden="true"></span>
@@ -1200,44 +1204,6 @@ body::after{
     <p class="kicker rev" data-decrypt="PORTFÓLIO // CONFIRA A QUALIDADE">PORTFÓLIO // CONFIRA A QUALIDADE</p>
     <h2 class="rev d1"><span class="glx" data-text="Imagina seu conteúdo nessa qualidade?">Imagina <em>seu</em> conteúdo nessa qualidade?</span></h2>
     <p class="rev d2">Vídeos editados por mim, do bruto ao pronto para postar. <strong>Passe o mouse para espiar</strong>, clique para assistir com som — e imagina o <strong>seu conteúdo</strong> aqui.</p>
-  </div>
-
-  <div class="dv-ilustracao rev rev-bounce" aria-hidden="true">
-    <svg viewBox="0 0 520 200" role="img">
-      <line x1="0" y1="8" x2="520" y2="8" stroke="rgba(247,247,245,.14)" stroke-width="1"/>
-      <rect x="0" y="16" width="520" height="26" rx="6" fill="var(--ink-3)"/>
-      <rect x="14" y="19" width="120" height="20" rx="4" fill="var(--dv-ciano)" opacity=".85"/>
-      <rect x="150" y="19" width="80" height="20" rx="4" fill="var(--dv-ciano)" opacity=".5"/>
-      <rect x="248" y="19" width="150" height="20" rx="4" fill="var(--dv-ciano)" opacity=".85"/>
-      <rect x="414" y="19" width="92" height="20" rx="4" fill="var(--dv-ciano)" opacity=".5"/>
-      <rect x="0" y="50" width="520" height="26" rx="6" fill="var(--ink-3)"/>
-      <rect x="30" y="53" width="100" height="20" rx="4" fill="var(--dv-laranja)" opacity=".85"/>
-      <rect x="150" y="53" width="180" height="20" rx="4" fill="var(--dv-laranja)" opacity=".55"/>
-      <rect x="352" y="53" width="140" height="20" rx="4" fill="var(--dv-laranja)" opacity=".85"/>
-      <rect x="0" y="84" width="520" height="26" rx="6" fill="var(--ink-3)"/>
-      <rect x="0" y="87" width="150" height="20" rx="4" fill="var(--rec)" opacity=".7"/>
-      <rect x="170" y="87" width="220" height="20" rx="4" fill="var(--rec)" opacity=".9"/>
-      <rect x="410" y="87" width="96" height="20" rx="4" fill="var(--rec)" opacity=".7"/>
-      <line x1="256" y1="10" x2="256" y2="112" stroke="var(--dv-amarelo)" stroke-width="2"/>
-      <polygon points="248,4 264,4 256,14" fill="var(--dv-amarelo)"/>
-      <g transform="translate(90,158)">
-        <circle r="30" fill="var(--ink-3)" stroke="var(--dv-ciano)" stroke-width="2"/>
-        <circle cx="-8" cy="10" r="5" fill="var(--dv-ciano)"/>
-      </g>
-      <g transform="translate(260,158)">
-        <circle r="30" fill="var(--ink-3)" stroke="var(--dv-laranja)" stroke-width="2"/>
-        <circle cx="6" cy="-8" r="5" fill="var(--dv-laranja)"/>
-      </g>
-      <g transform="translate(430,158)">
-        <circle r="30" fill="var(--ink-3)" stroke="var(--dv-amarelo)" stroke-width="2"/>
-        <circle cx="10" cy="6" r="5" fill="var(--dv-amarelo)"/>
-      </g>
-    </svg>
-    <div class="dv-legenda">
-      <span><i style="background:var(--dv-ciano)"></i>Timeline</span>
-      <span><i style="background:var(--dv-laranja)"></i>Color grading</span>
-      <span><i style="background:var(--dv-amarelo)"></i>Rodas de cor</span>
-    </div>
   </div>
 
   <!-- ✏️ EDITE AQUI: troque pelos vídeos reais editados por você.
