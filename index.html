@@ -539,32 +539,33 @@ body::after{
 }
 .chip-mini b{color:var(--studio);font-weight:700}
 
-/* ---------- fundo: ícone do DaVinci Resolve gigante, desfocado, sangrando no canto ---------- */
+/* ---------- fundo: ícone do DaVinci Resolve gigante, sangrando no canto ---------- */
 .hero-timeline-bg{
   position:absolute;z-index:0;pointer-events:none;
   width:44vw;max-width:600px;aspect-ratio:1/1;
   top:-14%;right:-12%;
-  border-radius:24%;
+  border-radius:24%;overflow:hidden;
   background:var(--ink-2);
   box-shadow:
     -50px -40px 80px 22px var(--dv-ciano),
      60px  16px 90px 22px var(--dv-laranja),
     -24px  76px 80px 22px var(--dv-amarelo);
-  filter:blur(28px) saturate(1.3);
-  opacity:.85;
+  filter:blur(7px) saturate(1.3);
+  opacity:.9;
   animation:flutuar 22s ease-in-out infinite alternate;
 }
+.hero-timeline-bg svg,.hero-timeline-bg2 svg{display:block;width:100%;height:100%}
 .hero-timeline-bg2{
   position:absolute;z-index:0;pointer-events:none;
   width:26vw;max-width:340px;aspect-ratio:1/1;
   bottom:-10%;left:-8%;
-  border-radius:24%;
+  border-radius:24%;overflow:hidden;
   background:var(--ink-2);
   box-shadow:
     -26px -20px 60px 16px var(--dv-amarelo),
      30px  16px 64px 16px var(--dv-ciano);
-  filter:blur(24px) saturate(1.3);
-  opacity:.6;
+  filter:blur(6px) saturate(1.3);
+  opacity:.7;
 }
 
 /* ============================================================
@@ -1132,8 +1133,24 @@ body::after{
 <!-- ============ ATO 1 — CURIOSIDADE ============ -->
 <section class="hero" aria-label="Apresentação" id="hero">
   <span class="pf pf-escura" data-par="0.12" aria-hidden="true">EDIT</span>
-  <div class="hero-timeline-bg" aria-hidden="true"></div>
-  <div class="hero-timeline-bg2" aria-hidden="true"></div>
+  <div class="hero-timeline-bg" aria-hidden="true">
+    <svg viewBox="0 0 200 200">
+      <rect width="200" height="200" rx="44" fill="var(--ink-2)"/>
+      <g transform="translate(100,100) rotate(-30)"><path d="M0,0 C-34,-10 -46,-46 -30,-78 C-14,-96 14,-96 30,-78 C46,-46 34,-10 0,0 Z" fill="var(--dv-ciano)"/></g>
+      <g transform="translate(100,100) rotate(90)"><path d="M0,0 C-34,-10 -46,-46 -30,-78 C-14,-96 14,-96 30,-78 C46,-46 34,-10 0,0 Z" fill="var(--dv-laranja)"/></g>
+      <g transform="translate(100,100) rotate(210)"><path d="M0,0 C-34,-10 -46,-46 -30,-78 C-14,-96 14,-96 30,-78 C46,-46 34,-10 0,0 Z" fill="var(--dv-amarelo)"/></g>
+      <circle cx="100" cy="100" r="9" fill="var(--ink)"/>
+    </svg>
+  </div>
+  <div class="hero-timeline-bg2" aria-hidden="true">
+    <svg viewBox="0 0 200 200">
+      <rect width="200" height="200" rx="44" fill="var(--ink-2)"/>
+      <g transform="translate(100,100) rotate(-30)"><path d="M0,0 C-34,-10 -46,-46 -30,-78 C-14,-96 14,-96 30,-78 C46,-46 34,-10 0,0 Z" fill="var(--dv-ciano)"/></g>
+      <g transform="translate(100,100) rotate(90)"><path d="M0,0 C-34,-10 -46,-46 -30,-78 C-14,-96 14,-96 30,-78 C46,-46 34,-10 0,0 Z" fill="var(--dv-laranja)"/></g>
+      <g transform="translate(100,100) rotate(210)"><path d="M0,0 C-34,-10 -46,-46 -30,-78 C-14,-96 14,-96 30,-78 C46,-46 34,-10 0,0 Z" fill="var(--dv-amarelo)"/></g>
+      <circle cx="100" cy="100" r="9" fill="var(--ink)"/>
+    </svg>
+  </div>
   <canvas id="particulas" aria-hidden="true"></canvas>
   <span class="bokeh b1" aria-hidden="true"></span>
   <span class="bokeh b2" aria-hidden="true"></span>
