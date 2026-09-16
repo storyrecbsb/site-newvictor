@@ -679,6 +679,7 @@ body::after{
   pointer-events:none;background:#000;
 }
 .take.tocando video.preview{opacity:1}
+.take.com-som .cov-play{opacity:0;pointer-events:none}
 /* brilho holográfico que varre o card */
 .take .holo{
   position:absolute;inset:0;z-index:2;pointer-events:none;
@@ -1188,7 +1189,7 @@ body::after{
     <div class="cliente-card rev">
       <img class="cliente-ig" src="images/ig-hanah-header.jpg" alt="Perfil verificado @hanahfranklin no Instagram — 1 mi seguidores" loading="lazy">
       <div class="cliente-player">
-        <video controls playsinline preload="metadata">
+        <video controls playsinline preload="metadata" poster="images/poster-hanah.jpg">
           <source src="videos/hanah-franklin.mp4" type="video/mp4">
         </video>
       </div>
@@ -1197,7 +1198,7 @@ body::after{
     <div class="cliente-card rev d1">
       <img class="cliente-ig" src="images/ig-cynthia-header.jpg" alt="Perfil verificado @cynthiasenek no Instagram — 713 mil seguidores" loading="lazy">
       <div class="cliente-player">
-        <video controls playsinline preload="metadata">
+        <video controls playsinline preload="metadata" poster="images/poster-cynthia.jpg">
           <source src="videos/cynthia-senek.mp4" type="video/mp4">
         </video>
       </div>
@@ -1704,7 +1705,18 @@ window.DEMOS_NEWVICTOR = {
     document.body.style.overflow = '';
     if(focoAnterior) focoAnterior.focus();
   }
-  $$('.take').forEach(t=> t.addEventListener('click', ()=> abrir(t)));
+  $$('.take').forEach(t=> t.addEventListener('click', ()=> {
+    const v = t.querySelector('video.preview');
+    if(!v) return;
+    if(t.classList.contains('com-som')) { v.pause(); return; }
+    $$('.take video.preview').forEach(other=>{ if(other !== v) other.pause(); });
+    v.muted = false; v.loop = false;
+    if(v.ended || !t.dataset.iniciado) v.currentTime = 0;
+    t.dataset.iniciado = '1';
+    t.classList.add('com-som','tocando');
+    t.setAttribute('aria-label', 'Pausar ' + t.dataset.titulo);
+    v.play().catch(()=>{ t.classList.remove('com-som'); t.setAttribute('aria-label', 'Reproduzir ' + t.dataset.titulo); });
+  }));
   $('#modal-fechar').addEventListener('click', fechar);
   fundo.addEventListener('click', e=>{ if(e.target === fundo) fechar(); });
   document.addEventListener('keydown', e=>{ if(e.key === 'Escape' && fundo.classList.contains('aberto')) fechar(); });
@@ -1735,9 +1747,17 @@ window.DEMOS_NEWVICTOR = {
     vid.addEventListener('timeupdate', ()=>{
       if(vid.duration) barra.style.width = (vid.currentTime / vid.duration * 100) + '%';
     });
+    take.setAttribute('aria-label', 'Reproduzir ' + take.dataset.titulo);
+    const parar = ()=>{
+      take.classList.remove('com-som');
+      take.setAttribute('aria-label', 'Reproduzir ' + take.dataset.titulo);
+      vid.muted = true;
+    };
+    vid.addEventListener('pause', parar);
+    vid.addEventListener('ended', parar);
     if(toqueGrosso || reduzMotion) return;
-    const ligar = ()=>{ take.classList.add('tocando'); vid.play().catch(()=>{}); };
-    const desligar = ()=>{ take.classList.remove('tocando'); vid.pause(); vid.currentTime = 0; barra.style.width = '0'; };
+    const ligar = ()=>{ if(take.dataset.iniciado) return; vid.muted = true; vid.loop = true; take.classList.add('tocando'); vid.play().catch(()=>{}); };
+    const desligar = ()=>{ if(take.dataset.iniciado) return; take.classList.remove('tocando'); vid.pause(); vid.currentTime = 0; barra.style.width = '0'; };
     take.addEventListener('mouseenter', ligar);
     take.addEventListener('mouseleave', desligar);
     take.addEventListener('focus', ligar);
@@ -1781,6 +1801,7 @@ window.DEMOS_NEWVICTOR = {
         else if (rel === n - 1) cls = 'esq';
         else if (rel === 2 && n > 4) cls = 'dir2';
         else if (rel === n - 2 && n > 4) cls = 'esq2';
+        if(rel !== 0 && c.classList.contains('com-som')) c.querySelector('video').pause();
         c.classList.add(cls);
         if (c.tagName === 'BUTTON') c.tabIndex = rel === 0 ? 0 : -1;
       });
@@ -1790,7 +1811,7 @@ window.DEMOS_NEWVICTOR = {
     let visivel = false;
     function reiniciar(){
       clearInterval(timer);
-      if (!reduz && visivel) timer = setInterval(() => { atual = (atual + 1) % n; pintar(); }, opts.tempo);
+      if (!reduz && visivel) timer = setInterval(() => { if(cover.querySelector('.com-som')) return; atual = (atual + 1) % n; pintar(); }, opts.tempo);
     }
 
     /* só gira quando a seção está na tela — e sempre volta pro primeiro ao sair */
@@ -1798,7 +1819,7 @@ window.DEMOS_NEWVICTOR = {
       new IntersectionObserver(es => {
         es.forEach(e => {
           visivel = e.isIntersecting;
-          if (!visivel) { clearInterval(timer); atual = 0; pintar(); }
+          if (!visivel) { cards.forEach(c=>{ const v=c.querySelector('video'); if(v && !v.muted) v.pause(); }); clearInterval(timer); atual = 0; pintar(); }
           else reiniciar();
         });
       }, { threshold: .35 }).observe(cover);
