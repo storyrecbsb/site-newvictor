@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<meta charset="UTF-8">
 <meta name="facebook-domain-verification" content="dl1g2pmlrwz745k542mxy4wml1o974" />
 <!-- Meta Pixel Code -->
 <script>
@@ -19,7 +20,6 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=2220453288813962&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NEWVICTOR.EDIT — Editor de conteúdo para Instagram</title>
 <meta name="description" content="Portfólio de edição de vídeo e conteúdo para Instagram. Reels com corte, ritmo e legenda que prendem atenção do primeiro segundo. Vagas limitadas por mês.">
@@ -1501,12 +1501,30 @@ window.DEMOS_NEWVICTOR = {
     const el = document.getElementById(jSecoes[alvo].id);
     if(el) el.scrollIntoView({behavior: reduzMotion ? 'auto' : 'smooth'});
   }
-  jNext.addEventListener('click', ()=> irSecao(jAtual === jSecoes.length-1 ? 0 : jAtual+1));
-  jPrev.addEventListener('click', ()=> irSecao(jAtual-1));
+  /* posição real da seção, calculada no instante do clique — o IntersectionObserver
+     (rootMargin -40%/-50%) demora pra atualizar jAtual em telas menores/seções
+     mais altas, e "Próximo" acabava mandando pra seção em que já se estava. */
+  function indiceAtual(){
+    const y = window.innerHeight * 0.35;
+    let idx = 0;
+    jSecoes.forEach((s,i)=>{
+      const el = document.getElementById(s.id);
+      // getBoundingClientRect (não offsetTop): #contato fica dentro de uma
+      // .secao com position:relative, então offsetTop seria relativo a ela
+      // e não à página — dava índice errado justo na última seção.
+      if(el && el.getBoundingClientRect().top <= y) idx = i;
+    });
+    return idx;
+  }
+  jNext.addEventListener('click', ()=>{
+    const atual = indiceAtual();
+    irSecao(atual === jSecoes.length-1 ? 0 : atual+1);
+  });
+  jPrev.addEventListener('click', ()=> irSecao(indiceAtual()-1));
   document.addEventListener('keydown', e=>{
     if(document.querySelector('#modal-fundo').classList.contains('aberto')) return;
-    if(e.key === 'ArrowRight') irSecao(jAtual+1);
-    if(e.key === 'ArrowLeft') irSecao(jAtual-1);
+    if(e.key === 'ArrowRight') irSecao(indiceAtual()+1);
+    if(e.key === 'ArrowLeft') irSecao(indiceAtual()-1);
   });
   atualizaJornada('topo');
   setTimeout(()=>jornada.classList.add('on'), reduzMotion ? 300 : 3400);
@@ -1783,6 +1801,9 @@ window.DEMOS_NEWVICTOR = {
 /* ---------- Carrossel sobreposto (coverflow) — vídeos e método ---------- */
 (function(){
   const reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* no celular só o card da frente toca o preview — tocar todos ao mesmo
+     tempo trava a rolagem em aparelho mais fraco */
+  const tocaSoFrente = window.matchMedia('(hover: none)').matches;
 
   function montar(cover, opts){
     if (!cover) return null;
@@ -1816,6 +1837,13 @@ window.DEMOS_NEWVICTOR = {
         else if (rel === 2 && n > 4) cls = 'dir2';
         else if (rel === n - 2 && n > 4) cls = 'esq2';
         if(rel !== 0 && c.classList.contains('com-som')) c.querySelector('video').pause();
+        if(tocaSoFrente){
+          const prev = c.querySelector('video.preview');
+          if(prev){
+            if(rel === 0){ c.classList.add('tocando'); prev.play().catch(()=>{}); }
+            else { c.classList.remove('tocando'); prev.pause(); }
+          }
+        }
         c.classList.add(cls);
         if (c.tagName === 'BUTTON') c.tabIndex = rel === 0 ? 0 : -1;
       });
@@ -1869,8 +1897,10 @@ window.DEMOS_NEWVICTOR = {
 
   const videos = montar(document.getElementById('cover'), { pontos: '.cover-pontos', tempo: 5200 });
 
-  /* vídeos rodando mudos no carrossel */
-  if (videos && !reduz) {
+  /* vídeos rodando mudos no carrossel — no celular o pintar() acima já
+     cuida de tocar só o card da frente; aqui é só o caso desktop, tocando
+     todos de uma vez como antes */
+  if (videos && !reduz && !tocaSoFrente) {
     const ligar = () => videos.cards.forEach(c => {
       const v = c.querySelector('video.preview');
       if (v) { c.classList.add('tocando'); v.play().catch(()=>{}); }
